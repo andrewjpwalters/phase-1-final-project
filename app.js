@@ -6,6 +6,7 @@ const searchResults = document.querySelector('#searchResults')
 //Event Listeners
 form.addEventListener('submit', (e) => {
     e.preventDefault()
+    searchResults.innerHTML = '';
     const searchInput = form.elements.query.value
     fetch(`https://api.tvmaze.com/search/shows?q=${searchInput}`)
         .then(res => res.json())
@@ -13,6 +14,7 @@ form.addEventListener('submit', (e) => {
             console.log(data)
             data.forEach(show => renderShows(show))
         })
+    form.elements.query.value = '';
 })
 
 //Handler functions
