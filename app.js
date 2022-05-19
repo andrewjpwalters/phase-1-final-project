@@ -37,5 +37,19 @@ function renderShows(showResult) {
     `
         }
     }
+    //clones show to "Watch List", removes "Add to Watch List" button
+    //and adds "Remove" button
+    card.querySelector('#addWatchList').addEventListener('click', () => {
+        let newCard = card.cloneNode(true)
+        let removeButton = document.createElement('button')
+        newCard.querySelector('#addWatchList').remove()
+        removeButton.setAttribute("id", "remove")
+        removeButton.innerText = 'Remove'
+        newCard.appendChild(removeButton)
+        newCard.querySelector('#remove').addEventListener('click', () => {
+            newCard.remove()
+        })
+        watchList.appendChild(newCard)
+    })
     searchResults.appendChild(card)
 }
