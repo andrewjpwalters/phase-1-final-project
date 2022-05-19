@@ -14,6 +14,9 @@ form.addEventListener('submit', (e) => {
             console.log(data)
             data.forEach(show => renderShows(show))
         })
+        .catch((e) => {
+            console.log('ERROR:', e)
+        })
     form.elements.query.value = '';
 })
 
