@@ -1,6 +1,7 @@
 //DOM Selectors
 const form = document.querySelector('#searchForm')
 const watchList = document.querySelector('#watchList')
+const watchListBody = document.querySelector('#watchListBody')
 const searchResults = document.querySelector('#searchResults')
 const openWatchList = document.querySelector('#openWatchList')
 
@@ -23,11 +24,11 @@ form.addEventListener('submit', (e) => {
 })
 //Opens and closes Watch List
 openWatchList.addEventListener('click', () => {
-    if (watchList.hidden === true) {
-        watchList.hidden = false
+    if (watchListBody.hidden === true) {
+        watchListBody.hidden = false
         openWatchList.innerText = 'Close Watch List'
     } else {
-        watchList.hidden = true
+        watchListBody.hidden = true
         openWatchList.innerText = 'Open Watch List'
     }
 })
@@ -37,33 +38,12 @@ function renderShows(showResult) {
     //Renders show card from search and appends to the "Search Results" section
     let card = document.createElement('div')
     let isInWatchList = false
-    card.setAttribute("class", "card")
+    card.setAttribute("class", "card text-center m-3")
     if (showResult.show.image !== null) {
-        if (showResult.show.summary === null) {
-            card.innerHTML = `
-    <img class="card-img-top" src="${showResult.show.image.medium}">
-    <div class="card-body">
-    <h5 class="card-title">${showResult.show.name}</h5>
-    <p class="card-text"> No Summary Available </p>
-    <button class="btn btn-primary" id="addWatchList"> Add to Watch List </button>
-    </div>
-    `
-        } else {
-            card.innerHTML = `
-    <img class="card-img-top" src="${showResult.show.image.medium}">
-    <div class="card-body">
-    <h5 class="card-title">${showResult.show.name}</h5>
-    <p class="card-text"> ${showResult.show.summary} </p>
-    <button class="btn btn-primary" id="addWatchList"> Add to Watch List </button>
-    </div>
-    `
-        }
-    } else if (showResult.show.summary !== null) {
         card.innerHTML = `
-    <img class="card-img-top" src="imgs/no-img-portrait-text.png">
+    <img class="card-img-top" src="${showResult.show.image.original}">
     <div class="card-body">
     <h5 class="card-title">${showResult.show.name}</h5>
-    <p class="card-text"> ${showResult.show.summary} </p>
     <button class="btn btn-primary" id="addWatchList"> Add to Watch List </button>
     </div>
     `
@@ -72,7 +52,6 @@ function renderShows(showResult) {
     <img class="card-img-top" src="imgs/no-img-portrait-text.png">
     <div class="card-body">
     <h5 class="card-title">${showResult.show.name}</h5>
-    <p class="card-text"> No Summary Available </p>
     <button class="btn btn-primary" id="addWatchList"> Add to Watch List </button>
     </div>
     `
@@ -83,9 +62,10 @@ function renderShows(showResult) {
         if (isInWatchList === false) {
             let newCard = card.cloneNode(true)
             let removeButton = document.createElement('button')
+            newCard.setAttribute("class", "w-25 card text-center m-3")
             newCard.querySelector('#addWatchList').remove()
             removeButton.setAttribute("id", "remove")
-            removeButton.setAttribute("class", "btn btn-primary")
+            removeButton.setAttribute("class", "btn btn-danger")
             removeButton.innerText = 'Remove'
             newCard.appendChild(removeButton)
             newCard.querySelector('#remove').addEventListener('click', () => {
