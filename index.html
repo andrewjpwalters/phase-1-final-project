@@ -12,22 +12,24 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container text-center">
         <h1 class="display-1 text-center">TV Show Search</h1>
         <form class="input-group" id="searchForm">
             <input type="search" class="form-control" placeholder="TV Show Title" name="query">
             <button class="btn btn-outline-primary">Search</button>
         </form>
 
-        <div class="card-columns" id="searchResults"></div>
-
         <div>
-            <button class="btn btn-outline-secondary btn-lg" id="openWatchList">Open Watch List</button>
+            <button class="btn btn-outline-secondary btn-lg m-2 mt-3" id="openWatchList">Open Watch List</button>
             <div id="watchListBody" hidden>
                 <h2 class="display-4 text-center">Watch List</h2>
                 <div id="watchList" class="d-flex flex-wrap"></div>
             </div>
         </div>
+
+        <hr>
+        <h2 class="display-4 text-center">Search Results</h2>
+        <div class="card-columns mb-5" id="searchResults"></div>
     </div>
 
 

@@ -38,7 +38,7 @@ function renderShows(showResult) {
     //Renders show card from search and appends to the "Search Results" section
     let card = document.createElement('div')
     let isInWatchList = false
-    card.setAttribute("class", "card text-center m-3")
+    card.setAttribute("class", "card text-center")
     if (showResult.show.image !== null) {
         card.innerHTML = `
     <img class="card-img-top" src="${showResult.show.image.original}">
@@ -62,7 +62,7 @@ function renderShows(showResult) {
         if (isInWatchList === false) {
             let newCard = card.cloneNode(true)
             let removeButton = document.createElement('button')
-            newCard.setAttribute("class", "w-25 card text-center m-3")
+            newCard.setAttribute("class", "w-25 card text-center")
             newCard.querySelector('#addWatchList').remove()
             removeButton.setAttribute("id", "remove")
             removeButton.setAttribute("class", "btn btn-danger")
