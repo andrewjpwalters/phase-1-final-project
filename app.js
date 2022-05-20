@@ -5,6 +5,7 @@ const searchResults = document.querySelector('#searchResults')
 const openWatchList = document.querySelector('#openWatchList')
 
 //Event Listeners
+//Fetches show information from TV Maze based off search value submitted
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     searchResults.innerHTML = '';
@@ -19,7 +20,7 @@ form.addEventListener('submit', (e) => {
         })
     form.elements.query.value = '';
 })
-
+//Opens and closes Watch List
 openWatchList.addEventListener('click', () => {
     if (watchList.hidden === true) {
         watchList.hidden = false
@@ -30,8 +31,9 @@ openWatchList.addEventListener('click', () => {
     }
 })
 
-//Handler functions
+//Handler function
 function renderShows(showResult) {
+    //Renders show card from search and appends to the "Search Results" section
     let card = document.createElement('li')
     let isInWatchList = false
     if (showResult.show.image) {
@@ -51,7 +53,7 @@ function renderShows(showResult) {
     `
         }
     }
-    //clones show to "Watch List", removes "Add to Watch List" button
+    //Clones show to "Watch List", removes "Add to Watch List" button
     //and adds "Remove" button
     card.querySelector('#addWatchList').addEventListener('click', () => {
         if (isInWatchList === false) {
