@@ -2,6 +2,7 @@
 const form = document.querySelector('#searchForm')
 const watchList = document.querySelector('#watchList')
 const searchResults = document.querySelector('#searchResults')
+const openWatchList = document.querySelector('#openWatchList')
 
 //Event Listeners
 form.addEventListener('submit', (e) => {
@@ -11,13 +12,22 @@ form.addEventListener('submit', (e) => {
     fetch(`https://api.tvmaze.com/search/shows?q=${searchInput}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             data.forEach(show => renderShows(show))
         })
         .catch((e) => {
             console.log('ERROR:', e)
         })
     form.elements.query.value = '';
+})
+
+openWatchList.addEventListener('click', () => {
+    if (watchList.hidden === true) {
+        watchList.hidden = false
+        openWatchList.innerText = 'Close Watch List'
+    } else {
+        watchList.hidden = true
+        openWatchList.innerText = 'Open Watch List'
+    }
 })
 
 //Handler functions
